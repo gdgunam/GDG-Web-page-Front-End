@@ -1,0 +1,169 @@
+﻿<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/core-media-query/core-media-query.html">
+
+<link rel="import" href="../post-service/businessInfo-service.html">
+<link rel="import" href="business-card.html">
+
+<polymer-element name="business-list" >
+
+	<template>
+		<style>
+			:host {
+				display: block;
+				width: 100%;
+				top: 40%;
+				position: absolute;
+			}
+			business-card {
+				margin-bottom: 15px;
+				margin-top: 15px;
+				width: 80%;
+				padding: 20px;
+				background: white
+			}
+			h2 {
+				alignment-adjust: central;
+			}
+
+			img {
+
+			}
+
+			.linkedIn {
+				right: 10%;
+				top: 10%;
+			}
+
+			.linkedIn:not([narrow]) {
+				right: 20%;
+				top: 20%;
+			}
+
+			p {
+				text-align: justify;
+				text-justify: inter-word;
+				font: normal 13px Roboto, arial, sans-serif;
+			}
+
+			.foto {
+				width: 100%;
+				border-radius: 200px;
+			}
+
+			.fotoMobile {
+				width: 100%;
+				border-radius: 200px;
+			}
+
+			.fotoLink {
+				width: 20%;
+			
+			}
+
+			.fotoLinkMobile {
+				width: 30%;
+			
+			}
+
+			.textoBusiness {
+				width: 80%
+			}
+
+			.textoBusinessMobile {
+				width: 100%
+			}
+
+			.nombreGDGorganizer {
+
+				font: 40px Roboto, arial, sans-serif;
+				margin: auto;
+				margin-bottom: 0px;
+				margin-top: 0px;
+			}
+
+			.nombreGDGorganizerMobile {
+
+				font: 30px Roboto, arial, sans-serif;
+				margin: auto;
+				margin-bottom: 0px;
+				margin-top: 0px;
+			}
+
+			.despcripcionGDGorganizer {
+				margin-left: 15px;
+				font-size: 15px;
+			}
+
+		</style>
+
+		<businessInfo-service id="businessService" businessCards="{{businessCards}}"></businessInfo-service>
+		<template if="{{smallScreen}}" >
+
+			<div layout vertical center>
+				<template repeat="{{businessCard in businessCards}}"  >
+					<business-card >
+
+						<paper-shadow z="3"></paper-shadow>
+						<!--<hr>
+						hola
+						<hr>
+						-->
+						<div horizontal layout >
+							<a href="{{businessCard.linkedIn}}" class="fotoLink"><img src="{{businessCard.imagen}}" class="foto"></a>
+							<div vertical layout class="textoBusiness">
+								<h2 style="margin: auto" class="nombreGDGorganizer">{{businessCard.nombre}}</h2>
+								<p class="despcripcionGDGorganizer">
+									{{businessCard.descripcion}}
+								</p>
+							</div>
+
+						</div>
+
+					</business-card>
+				</template>
+			</div>
+
+		</template>
+		<template if="{{!smallScreen}}" >
+			<div layout vertical center>
+				<template repeat="{{businessCard in businessCards}}"  >
+					<business-card >
+						<paper-shadow z="3"></paper-shadow>
+						<!--<hr>
+						hola
+						<hr>
+						-->
+						<div vertical layout >
+
+							<div horizontal layout class="textoBusinessMobile">
+								<a href="{{businessCard.linkedIn}}" class="fotoLinkMobile"><img src="{{businessCard.imagen}}" class="fotoMobile"></a>
+
+								<h2 style="margin: auto" class="nombreGDGorganizerMobile">{{businessCard.nombre}}</h2>
+
+							</div>
+							<p class="despcripcionGDGorganizer">
+								{{businessCard.descripcion}}
+							</p>
+
+						</div>
+
+					</business-card>
+				</template>
+			</div>
+
+		</template>
+
+		<core-media-query
+		query="min-width: 500px"
+		queryMatches="{{smallScreen}}"></core-media-query>
+	</template>
+
+	<script>
+		Polymer('business-list', {
+			created : function() {
+				this.style.top = '192px';
+
+			}
+		});
+	</script>
+</polymer-element>

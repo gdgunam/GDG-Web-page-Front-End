@@ -1,0 +1,62 @@
+﻿{{define "card"}}
+<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/core-icon-button/core-icon-button.html">
+
+<polymer-element name="business-card" >
+	<template  >
+		<style shim-shadowdom>
+			:host {
+				display: block;
+				position: relative;
+				padding: 20px;
+				width: 90%;
+				font-size: 1.2 rem;
+				font-weight: 300;
+				background: white
+			}
+			.card-header {
+				margin: 15px;
+			}
+			polyfill-next-selector {
+				content: '.card-header h2';
+			}
+			.card-header ::content h2 {
+				margin: 0;
+				font-size: 1.8 rem;
+				font-weight: 300;
+			}
+
+			polyfill-next-selector {
+				content: '.card-header img';
+			}
+			
+			::content .linkedIn{
+				position:absolute;
+				right:2px;
+				top:2px;
+				
+			}
+
+			
+
+		</style>
+		<template >
+			<img class="linkedIn" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQeaWJTDGle1tJ1aaufvjkCGXQjAx7s-72xNdAwaPfgcS4MR8tPw" width="30px" height="30px">
+			<paper-shadow z="2"></paper-shadow>
+			<div class="card-header" horizontal layout >
+				<content select="img"></content>
+				<div vertical layout >
+					<content select="h2"></content>
+					<content select="img"></content>
+					<content select="p"></content>
+				</div>
+				
+
+			</div>
+
+		</template>
+
+	</template>
+
+</polymer-element>
+{{end}}

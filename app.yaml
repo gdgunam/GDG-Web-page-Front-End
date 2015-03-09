@@ -1,0 +1,51 @@
+application: gdg-page
+version: 1
+runtime: go
+api_version: go1
+
+handlers:
+- url: /
+  static_files: tmpl/finished/index.html
+  upload: tmpl/finished/index.html
+  
+- url: /post-list.html
+  static_files: tmpl/finished/post-list.html
+  upload: tmpl/finished/post-list.html
+
+- url: /business-list.html
+  static_files: tmpl/finished/business-list.html
+  upload: tmpl/finished/business-list.html
+  
+
+- url: /post-service/post-service.html
+  static_files: tmpl/post-service/post-service.html
+  upload: tmpl/post-service/post-service.html
+
+- url: /post-service/businessInfo-service.html
+  static_files: tmpl/post-service/businessInfo-service.html
+  upload: tmpl/post-service/businessInfo-service.html
+
+  
+- url: /api/posts.json
+  static_files: tmpl/api/posts.json
+  upload: tmpl/api/posts.json
+  
+
+- url: /post-card.html
+  static_files: tmpl/finished/post-card.html
+  upload: tmpl/finished/post-card.html
+  
+- url: /business-card.html
+  static_files: tmpl/finished/business-card.html
+  upload: tmpl/finished/business-card.html
+
+- url: /sectionContent.html
+  static_files: tmpl/finished/sectionContent.html
+  upload: tmpl/finished/sectionContent.html
+
+  
+- url: /components
+  static_dir: tmpl/components
+  
+- url: /images
+  static_dir: tmpl/images  

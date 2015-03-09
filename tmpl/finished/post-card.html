@@ -1,0 +1,56 @@
+﻿{{define "card"}}
+<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/core-icon-button/core-icon-button.html">
+
+<polymer-element name="post-card">
+  <template>
+    <style shim-shadowdom>
+    :host {
+      display: block;
+      position: relative;      
+      padding: 20px;
+      width: 90%;
+      font-size: 1.2rem;
+      font-weight: 300;
+      background: white
+      
+    }
+    .card-header {
+      margin: 15px;
+      
+    }
+    polyfill-next-selector { content: '.card-header h2'; }
+    .card-header ::content h2 {
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: 300;
+    }
+    
+    polyfill-next-selector { content: '.card-header img'; }
+    
+    .card-header ::content img {
+      width: 70px;
+      border-radius: 50%;
+      margin: 10px;
+    }
+    
+    p {
+				text-align: justify;
+				text-justify: inter-word;
+				font: normal 13px Roboto, arial, sans-serif;
+			}
+    
+    </style>
+     <paper-shadow z="2"></paper-shadow>
+    <div class="card-header" horizontal layout >
+      <div vertical layout >      	      
+      <content select="h2"></content>	 
+      <content select="p"></content>     	
+      </div>      
+      <content select="img"></content>
+      <content select="iframe"></content>      
+    </div>    
+  </template>
+  
+</polymer-element>
+{{end}}

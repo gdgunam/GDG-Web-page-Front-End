@@ -1,0 +1,299 @@
+﻿<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../components/paper-input/paper-input.html">
+<link rel="import" href="../components/paper-button/paper-button.html">
+<link rel="import" href="../post-service/post-service.html">
+<link rel="import" href="../post-service/businessInfo-service.html">
+<link rel="import" href="post-card.html">
+<link rel="import" href="business-card.html">
+<link rel="import" href="../components/core-ajax/core-ajax.html">
+
+<polymer-element name="contenido-seccion" attributes="exp">
+	<template >
+		<style>
+			:host {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				box-sizing: border-box;
+			}
+
+			post-list {
+				left: 0px;
+				top: 0px;
+			}
+
+			business-list {
+				left: 0px;
+				top: 0px;
+			}
+
+			.container {
+				width: 900;
+				margin: auto;
+			}
+
+			#core_scroll_header_panel {
+				width: 100%;
+				height: 100%;
+				left: 0px;
+				top: 0px;
+				position: absolute;
+			}
+
+			core-scroll-header-panel::shadow #headerBg {
+				background-image: url(../images/headerGDGPage.png);
+			}
+
+			core-scroll-header-panel::shadow #condensedHeaderBg {
+				background-color: #0266C8;
+				opacity: 0.4;
+			}
+
+			core-toolbar {
+				color: rgb(241, 241, 241);
+				fill: rgb(241, 241, 241);
+				background-color: transparent;
+			}
+
+			#section {
+				height: 5000px;
+				background: linear-gradient(rgb(250, 250, 250), rgb(254, 250, 250) );
+				box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
+				top: 0px;
+			}
+			#sectionaza {
+				height: 5000px;
+				background: linear-gradient(rgb(250, 250, 250), rgb(254, 250, 250) );
+				box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
+			}
+
+			#navheader {
+				background-color: rgb(0, 0, 137);
+			}
+
+			#core-header-panel {
+				background-color: transparent;
+				padding-top: 5px;
+			}
+
+			#navheader {
+				background-color: rgb(0, 0, 137);
+			}
+
+			#core_card {
+				width: 250px;
+				height: 190px;
+				border-top-left-radius: 2px;
+				border-top-right-radius: 2px;
+				border-bottom-right-radius: 2px;
+				border-bottom-left-radius: 2px;
+				box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
+				margin: auto;
+				background-color: red;
+				background-image: url(http://edsiper.linuxchile.cl/blog/wp-content/uploads/2012/10/DSC_0413.jpg);
+			}
+
+			core-item.core-selected {
+
+				height: 50px;
+				box-shadow: rgba(0, 0, 4, 0.0980392) 4px 4px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
+			}
+
+			core-item {
+				margin-bottom: 5px;
+				margin-top: 5px;
+			}
+
+			#core_item1 {
+
+				padding: 5px;
+			}
+
+			#core_item {
+				overflow: visible;
+				padding: 5px;
+				opacity: 0.8;
+			}
+
+			#div2 {
+				width: 100%;
+			}
+
+			#headerContacto {
+				font-size: 22px;
+				margin-bottom: 20px;
+				color: green;
+			}
+
+			#div3 {
+				width: 100%;
+			}
+
+			#core_menu {
+				width: 93%;
+				background: white;
+			}
+
+			#core_item2 {
+				padding: 5px;
+			}
+
+			#core_item3 {
+				padding: 5px;
+			}
+
+			#core_item4 {
+				padding: 5px;
+			}
+
+			core-drawer-panel:not([narrow]) #navicon {
+				display: none;
+			}
+
+			#div1 {
+				font: normal 30px Roboto, arial, sans-serif;
+				margin-left:90px;
+			}
+
+			#formularioContacto {
+				margin-bottom: 15px;
+				margin-top: 15px;
+				width: 70%;
+				padding: 20px;
+				background: white;
+				position: absolute;
+				
+				top: 200px;
+				left: 15%;
+				box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
+			}
+			#sectionContacto {
+				height: 5000px;
+				background: linear-gradient(rgb(250, 250, 250), rgb(254, 250, 250) );
+				box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
+			}
+
+			paper-button.colored {
+				color: #4285f4;
+				fill: #4285f4;
+			}
+
+			paper-button[raisedButton].colored {
+				background: #4285f4;
+				color: #fff;
+			}
+
+			paper-button[raisedButton].colored #ripple, paper-button[raisedButton].colored::shadow #ripple {
+				color: #2a56c6;
+			}
+
+			paper-button[raisedButton].colored #focusBg, paper-button[raisedButton].colored::shadow #focusBg {
+				background: #3367d6;
+			}
+
+			paper-input {
+				width: 50%;
+				margin-bottom: 4%;
+			}
+
+		</style>
+
+		<core-scroll-header-panel condenses keepcondensedheader
+		headerheight="192" condensedheaderheight="64"
+		id="core_scroll_header_panel" >
+			<core-toolbar
+			id="core_toolbar" class="tall">
+				<paper-icon-button
+				icon="menu" id="navicon" on-tap="{{toggleDrawer}}"></paper-icon-button>
+				<div id="div" flex></div>
+				<div id="div1" class="bottom indent">
+					GDG UNAM
+				</div>
+			</core-toolbar>
+
+			<section id="section" content>
+				<div class="container" layout vertical center hidden?="{{exp != 'principal'}}">
+					<post-list show="all" ></post-list>
+				</div>
+			</section>
+
+			<section id="sectionaza" content>
+				<div class="container" layout vertical center hidden?="{{exp != 'nosotros'}}">
+					<business-list ></business-list>
+				</div>
+			</section>
+
+			<section id="sectionEventos" content>
+				<div class="container" hidden?="{{exp != 'eventos'}}">
+					<br>
+					<iframe src="https://www.google.com/calendar/embed?src=08a4g3kpme8dl1qofiqn21k69g%40group.calendar.google.com&ctz=America/Chicago" style="border: 0;position:absolute; top:220px;" width="100%" height="600px"></iframe>
+				</div>
+			</section>
+
+			<section id="sectionContacto" content>
+				<div class="container" hidden?="{{exp != 'contacto'}}">
+					<div id="formularioContacto">						
+						<div layout vertical center>
+							<span id="headerContacto">Queremos escucharte!</span>
+							<paper-input id="nombre" label="Nombre" multiline floatingLabel="true" value="{{nombreContacto}}"></paper-input>
+							<paper-input label="Correo" multiline floatingLabel="true" value="{{correoContacto}}"></paper-input>
+							<paper-input label="Asunto" multiline floatingLabel="true" value="{{asuntoContacto}}"></paper-input>
+							<paper-input label="Mensaje" multiline floatingLabel="true" value="{{mensajeContacto}}"></paper-input>
+							<paper-button raisedbutton="" on-click="{{hola}}" class="colored" label="Enviar" role="button" tabindex="0" aria-label="colored" id="enviarFormularioContacto"></paper-button>
+						</div>
+
+					</div>
+				</div>
+			</section>
+
+		</core-scroll-header-panel>
+
+<core-ajax id="correoServiceCall" url=" " auto="false" handleAs="json" on-core-response="{{responseContacto}}"></core-ajax>
+	</template>
+
+	<script>
+		Polymer('contenido-seccion', {
+			created : function() {
+				this.exp = 'principal';
+
+			},
+			toggleDrawer : function() {
+				var navicon = document.getElementById('navicon');
+
+				var drawerPanel = document.getElementById('drawerPanel');
+				drawerPanel.togglePanel();
+
+			},
+			hola : function() {
+				
+				this.$.correoServiceCall.url="https://paginabe.appspot.com/_ah/api/contacto/v1/accionContacto?nombre="+this.nombreContacto+"&asunto="+this.asuntoContacto+"&correo="+this.correoContacto+"&mensaje="+this.mensajeContacto;
+				this.$.correoServiceCall.go();
+
+				//alert(this.nombreContacto)
+				//alert(this.$.core_scroll_header_panel.querySelector('#nombre').value)
+
+			},
+			
+			responseContacto:function(){
+				this.nombreContacto="";
+				this.correoContacto="";
+				this.asuntoContacto="";
+				this.mensajeContacto="";
+				alert("Mensaje enviado correctamente!");
+				
+				
+			}
+		});
+
+		/*
+		 var menu = document.getElementById('core_menu');
+
+		 menu.addEventListener('core-select', function(e) {
+		 console.log("tab change: " + e.target.getAttribute('id') + " selected = " + e.detail.isSelected);
+		 console.log("Selected: " + menu.selected);
+
+		 var exp = "hola";
+
+		 }); */
+	</script>
+</polymer-element>

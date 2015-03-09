@@ -1,0 +1,271 @@
+<!doctype html>
+
+<html>
+	<head>
+
+		<title id="tituloPagina">GDG UNAM</title>
+		<meta name="viewport"
+		content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+		<script src="../components/platform/platform.js"></script>
+		<link rel="import"
+		href="../components/core-drawer-panel/core-drawer-panel.html">
+		<link rel="import"
+		href="../components/core-icon-button/core-icon-button.html">
+		<link rel="import" href="../components/core-toolbar/core-toolbar.html">
+		<link rel="import"
+		href="../components/core-header-panel/core-header-panel.html">
+		<link rel="import" href="../components/core-menu/core-submenu.html">
+		<link rel="import" href="../components/core-item/core-item.html">
+		<link rel="import"
+		href="../components/core-scroll-header-panel/core-scroll-header-panel.html">
+		<link rel="import" href="../components/core-icons/core-icons.html">
+		<link rel="import"
+		href="../components/paper-icon-button/paper-icon-button.html">
+		<link rel="import" href="post-list.html">
+		<link rel="import" href="business-list.html">
+		<link rel="import" href="sectionContent.html">
+		<meta name="apple-mobile-web-app-capable" />
+		<script type="text/javascript" charset="utf-8">
+			//window.location = "LinkedIn://guillermo rosales";
+		</script>
+
+		<style shim-shadowdom>
+			:host {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				box-sizing: border-box;
+			}
+
+			body {
+
+				font-family: Roboto, arial, sans-serif;
+			}
+
+			#tituloPagina {
+				font: normal 30px Roboto, arial, sans-serif;
+			}
+
+			.container {
+				width: 900;
+				margin: auto;
+			}
+
+			#core_scroll_header_panel {
+				width: 100%;
+				height: 100%;
+				left: 0px;
+				top: 0px;
+				position: absolute;
+			}
+
+			#core-header-panel {
+				background-color: transparent;
+				padding-top: 5px;
+			}
+
+			#core_card {
+				width: 250px;
+				height: 190px;
+				border-top-left-radius: 2px;
+				border-top-right-radius: 2px;
+				border-bottom-right-radius: 2px;
+				border-bottom-left-radius: 2px;
+				box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
+				margin: auto;
+				background-color: red;
+				background-image: url(http://edsiper.linuxchile.cl/blog/wp-content/uploads/2012/10/DSC_0413.jpg);
+			}
+
+			core-item.core-selected {
+
+				height: 50px;
+				box-shadow: rgba(0, 0, 4, 0.0980392) 4px 4px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
+			}
+
+			core-item {
+				margin-bottom: 5px;
+				margin-top: 5px;
+			}
+
+			#core_item1 {
+
+				padding: 5px;
+			}
+
+			#core_item {
+				overflow: visible;
+				padding: 5px;
+				opacity: 0.8;
+			}
+
+			#div2 {
+				width: 100%;
+			}
+
+			#div3 {
+				width: 100%;
+			}
+
+			#core_menu {
+				width: 93%;
+				background: white;
+			}
+
+			#core_item2 {
+				padding: 5px;
+			}
+
+			#core_item3 {
+				padding: 5px;
+			}
+
+			#core_item4 {
+				padding: 5px;
+			}
+
+			core-drawer-panel:not([narrow]) #navicon {
+				display: none;
+			}
+
+			#core_item2 {
+				color: gray
+			}
+
+		</style>
+	</head>
+	<body unresolved touch-action="auto">
+		<core-drawer-panel id="drawerPanel">
+			<core-header-panel id="core_header_panel" drawer>
+				<core-card
+				id="core_card" layout vertical>
+					<div class="paper-shadow paper-shadow-bottom-z-1"></div>
+					<div class="paper-shadow paper-shadow-top-z-1"></div>
+					
+					<paper-shadow id="paper_shadow"></paper-shadow>
+					<img
+					src="http://www.devfestdc.org/wp-content/uploads/2013/10/gdg-square-logo.png">
+				</core-card>
+				<core-menu selected="0" selectedindex="0" id="core_menu" valueattr="id">
+					<core-item label="Principal" icon="home" size="24" id="core_item"
+					horizontal center layout>
+						<div id="div2" class="paper-shadow paper-shadow-bottom-z-1"></div>
+						<div id="div3" class="paper-shadow paper-shadow-top-z-1"></div>
+					</core-item>
+					<core-item label="Eventos" icon="event" size="24" id="core_item1"
+					horizontal center layout active>
+						<div class="paper-shadow paper-shadow-bottom-z-1"></div>
+						<div class="paper-shadow paper-shadow-top-z-1"></div>
+					</core-item>
+					<core-item label="Blog" icon="thumb-up" size="24" id="core_item2"
+					horizontal center layout>
+						<div id="div8" class="paper-shadow paper-shadow-bottom-z-1"></div>
+						<div class="paper-shadow paper-shadow-top-z-1"></div>
+					</core-item>
+					<core-item label="Nosotros" icon="account-circle" size="24"
+					id="core_item3" horizontal center layout>
+						<div class="paper-shadow paper-shadow-bottom-z-1"></div>
+						<div class="paper-shadow paper-shadow-top-z-1"></div>
+					</core-item>
+					<core-item label="Contacto" icon="google-plus" size="24"
+					id="core_item4" horizontal center layout>
+						<div class="paper-shadow paper-shadow-bottom-z-1"></div>
+						<div class="paper-shadow paper-shadow-top-z-1"></div>
+					</core-item>
+				</core-menu>
+			</core-header-panel>
+
+			<!--<core-scroll-header-panel condenses keepcondensedheader
+			headerheight="192" condensedheaderheight="64"
+			id="core_scroll_header_panel" main>
+			<core-toolbar
+			id="core_toolbar" class="tall">
+			<paper-icon-button
+			icon="menu" id="navicon"></paper-icon-button>
+			<div id="div" flex></div>
+			<core-icon-button icon="search" id="core_icon_button1"></core-icon-button>
+			<core-icon-button icon="more-vert" id="core_icon_button2"></core-icon-button>
+			<div id="div1" class="bottom indent">
+			GDG UNAM
+			</div>
+			</core-toolbar>
+
+			<section id="section" content>
+			<div class="container" layout vertical center>
+			<post-list show="all"></post-list>
+			</div>
+
+			</section>
+			</core-scroll-header-panel>-->
+
+			<contenido-seccion main id="seccionContent" exp="principal"></contenido-seccion>
+
+		</core-drawer-panel>
+
+		<script>
+			var principal = document.getElementById('core_item');
+			var seccion = document.getElementById('seccionContent');
+			var drawer = document.getElementById('drawerPanel');
+
+			seccion.exp = 'principal';
+
+			principal.addEventListener('click', function() {
+
+				//console.log("Selected: " + menu.selected);
+				console.log(seccion.exp);
+
+				seccion.exp = 'principal';
+				drawerPanel.closeDrawer();
+
+			});
+
+			var nosotros = document.getElementById('core_item3');
+
+			nosotros.addEventListener('click', function() {
+
+				//console.log("Selected: " + menu.selected);
+				console.log(seccion.exp);
+
+				seccion.exp = 'nosotros';
+				drawerPanel.closeDrawer();
+
+			});
+
+			var eventos = document.getElementById('core_item1');
+
+			eventos.addEventListener('click', function() {
+
+				//console.log("Selected: " + menu.selected);
+				console.log(seccion.exp);
+
+				seccion.exp = 'eventos';
+				drawerPanel.closeDrawer();
+
+			});
+
+			var eventos = document.getElementById('core_item4');
+
+			eventos.addEventListener('click', function() {
+
+				//console.log("Selected: " + menu.selected);
+				console.log(seccion.exp);
+
+				seccion.exp = 'contacto';
+				drawerPanel.closeDrawer();
+
+			});
+
+			/*selectAction: function(e, detail) {
+			if (detail.isSelected) {
+			var selectedItem = detail.item;
+			//...
+			}
+			}*/
+
+			//			});
+
+		</script>
+
+	</body>
+</html>
+

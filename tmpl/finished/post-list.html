@@ -1,0 +1,86 @@
+﻿<link rel="import" href="../components/polymer/polymer.html">
+<link rel="import" href="../post-service/post-service.html">
+<link rel="import" href="post-card.html">
+
+<polymer-element name="post-list" attributes="show">
+	<template>
+		<style>
+			:host {
+				display: block;
+				width: 100%;
+				top: 40%;
+				position: absolute;
+			}
+			post-card {
+				margin-bottom: 15px;
+				margin-top: 15px;
+				width: 80%;
+				padding: 20px;
+				background: white
+			}
+			h2 {
+				alignment-adjust: central;
+			}
+
+			p {
+				text-align: justify;
+				text-justify: inter-word;
+				font: normal 15px Roboto, arial, sans-serif;
+			}
+			#noticiasInfo {
+				font-size: 9px;
+				color: gray;
+				width: auto;
+				margin: auto;
+				margin-bottom: 15px;
+			}
+
+			hr {
+				/* height: 20px; */
+				width: 70%;
+				margin: 0px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			.tituloNoticia {
+				margin: auto;
+				font: 25px Roboto, arial, sans-serif;
+			}
+		</style>
+
+		<post-service id="service" noticias="{{noticias}}"  ></post-service>
+
+		<div layout vertical center>
+			<template repeat="{{noticia in noticias}}">
+				<post-card>
+					<paper-shadow z="3"></paper-shadow>
+					<div vertical layout >
+						<h2 style="margin: auto" class="tituloNoticia">{{noticia.titulo}}</h2>
+						<hr>
+						<p id="noticiasInfo">
+							Posteado por: {{noticia.autor}} {{noticia.date}} {{noticia.categoria}}
+						</p>
+						<iframe  src='{{noticia.video}}'  style="height: 300px"   allowfullscreen></iframe>
+						<img src="{{noticia.imagen}}" width="{{noticia.imagenWidth}}" height="{{noticia.imagenHeight}}" class="videoNoticia">						
+						<p>
+							{{noticia.descripcion}}
+						</p>
+					</div>
+
+				</post-card>
+
+			</template>
+		</div>
+	</template>
+
+	<script>
+		Polymer('post-list', {
+			created : function() {
+
+				this.style.top = '192px';
+
+			},
+		});
+	</script>
+</polymer-element>
